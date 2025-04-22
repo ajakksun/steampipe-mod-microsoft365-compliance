@@ -1,4 +1,4 @@
-query "query.custom_admin_accounts_cloud_only" {
+query "custom_admin_accounts_cloud_only" {
   sql = <<-EOQ
     WITH global_admin_members AS (
       SELECT
