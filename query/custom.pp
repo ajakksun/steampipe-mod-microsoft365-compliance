@@ -1,4 +1,4 @@
-query "azuread_global_admin_range_restricted" {
+query "query.custom_admin_accounts_cloud_only" {
   sql = <<-EOQ
     WITH global_admin_members AS (
       SELECT
