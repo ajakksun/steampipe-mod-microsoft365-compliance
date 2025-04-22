@@ -41,6 +41,7 @@ benchmark "cis_v400_1" {
 benchmark "cis_v400_1_1" {
   title = "1.1 Users"
   children = [
+    control.cis_v400_1_1_1,
     control.cis_v400_1_1_3
   ]
 
@@ -49,6 +50,20 @@ benchmark "cis_v400_1_1" {
     service = "Azure/ActiveDirectory"
   })
 }
+
+control "cis_v400_1_1_1" {
+  title        = "1.1.1 Ensure Administrative accounts are cloud-only"
+  description  = "Administrative accounts must exist only in Azure AD; no on‑premises synchronized accounts are allowed."
+  query        = query.custom_admin_accounts_cloud_only
+  documentation = file("./cis_v400/docs/cis_v400_1_1_1.md")
+  tags = merge(local.cis_v400_1_1_common_tags, {
+    cis_item_id = "1.1.1"
+    cis_level   = "1"
+    cis_type    = "automated"
+    service     = "Azure/ActiveDirectory"
+  })
+}
+
 
 control "cis_v400_1_1_3" {
   title         = "1.1.3 Ensure that between two and four global admins are designated"
